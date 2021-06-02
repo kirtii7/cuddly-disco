@@ -1,0 +1,16 @@
+{% extends "Register/layout.html" %}
+{% block body %}
+	{% if message %}
+		<div class="alert alert-danger">{{ message }}</div>
+	{% endif %}
+
+	<form action="{% url 'Register:register' %}" method="post"> 
+		{% csrf_token %}
+		<input type="text", name="name", placeholder="Enter name">
+		<input type="text", name="username", placeholder="Enter username">
+		<input type="email", name="email", placeholder="Email address">
+		<input type="password", name="password", placeholder="Password">	
+		<input type="submit">
+	</form>
+	<a href="login">If already registered click here</a>
+{% endblock %}

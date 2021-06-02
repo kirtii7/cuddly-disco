@@ -1,0 +1,18 @@
+{% extends "Register/layout.html" %}
+{% block body %}
+	{% if message %}
+		<div class="alert alert-danger">{{ message }}</div>
+	{% endif %}
+	<div class="form-group" style="margin-left:30%; margin-top:20%; margin-right: 30%" >
+	<form action="{% url 'Register:index' %}" method="post"> 
+	{% csrf_token %}
+
+  		<label for="username" >Username:</label><br>
+        <input type="text" name="username" placeholder="Username" class="form-control"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" name="password" placeholder="Password" class="form-control"><br><br>
+        <button type="login" class="btn btn-primary">Submit</button>
+	</form>
+	</div>
+	<a href="register">Click to register</a>
+{% endblock %}
