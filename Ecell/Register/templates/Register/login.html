@@ -3,16 +3,20 @@
 	{% if message %}
 		<div class="alert alert-danger">{{ message }}</div>
 	{% endif %}
-	<div class="form-group" style="margin-left:30%; margin-top:20%; margin-right: 30%" >
+	<a href="register"><h1 style="text-align:center" style="margin-right:50%; padding-top: 40%; margin-top: 30%; font-weight: bold; font-size: large" >Click here to register</h1></a>
+	<style>
+		body {background-image: url('https://images.unsplash.com/photo-1562233142-8b7334969c33?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=642&q=80');}
+	</style>
+	<div class="form-group" style="margin-left:30%; margin-top:15%; margin-right: 30%; font-" >
 	<form action="{% url 'Register:index' %}" method="post"> 
 	{% csrf_token %}
 
-  		<label for="username" >Username:</label><br>
+  		<label for="username"><h2 style="font-weight: 600;">Username:</h2></label><br>
         <input type="text" name="username" placeholder="Username" class="form-control"><br>
-        <label for="password">Password:</label><br>
+        <label for="password"><h2 style="font-weight: 600";>Password:</h2></label><br>
         <input type="password" name="password" placeholder="Password" class="form-control"><br><br>
         <button type="login" class="btn btn-primary">Submit</button>
 	</form>
 	</div>
-	<a href="register" style="text-align:center;">Click to register</a>
+	
 {% endblock %}

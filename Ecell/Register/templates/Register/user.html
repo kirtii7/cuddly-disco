@@ -1,15 +1,13 @@
 {% extends "Register/layout.html" %}
 {% block body %}
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 36rem; margin-right: 30%;margin-left: 30%;margin-top: 10%;margin-bottom: 30%">
 
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="card-body" >
+    <h1 class="card-title">Welcome, {{ data.name }}</h1>
+    <p class="card-text">Username:{{ data.username }}</p>
+    <p class="card-text">Email:{{ data.email }}</p>
+
+    <a href="login" class="btn btn-primary">Logout</a>
   </div>
 </div>
-	<h1>Welcome, {{ data.name }}</h1>
-	<h4>Username:{{ data.username }}</h4>
-	<h4>Email:{{ data.email }}</h4>
-	<a href="login">Click to logout</a>
 {% endblock %}

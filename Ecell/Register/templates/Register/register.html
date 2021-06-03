@@ -3,14 +3,24 @@
 	{% if message %}
 		<div class="alert alert-danger">{{ message }}</div>
 	{% endif %}
-
+	<div class= "form-group" style="text-align: center; margin-right:30%; margin-left: 30%; margin-top: 10%; font-size: large;">
 	<form action="{% url 'Register:register' %}" method="post"> 
 		{% csrf_token %}
-		<input type="text", name="name", placeholder="Enter name">
-		<input type="text", name="username", placeholder="Enter username">
-		<input type="email", name="email", placeholder="Email address">
-		<input type="password", name="password", placeholder="Password">	
-		<input type="submit">
+		<label for="Name" class="control-label"><h1>Name</h1></label>
+		<input type="text", name="name", placeholder="Enter name" class="form-control"><br>
+		<label for="Username" class="control-label"><h1>Username</h1></label>
+		<input type="text", name="username", placeholder="Enter username" class="form-control"><br>
+		<label for="Email address" class="control-label"><h1>Email address</h1></label>
+		<input type="email", name="email", placeholder="Email address" class="form-control"><br>
+		<label for="Password"><h1>Password</h1></label>
+		<input type="password", name="password", placeholder="Password" class="form-control"><br>	
+		<input type="submit"><br><br>
 	</form>
+	</div>
+	<style>
+		body {background-image: url('https://images.unsplash.com/photo-1562233142-8b7334969c33?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=642&q=80');}
+	</style>
+	<div style="text-align: center">
 	<a href="login">If already registered click here</a>
+	</div>
 {% endblock %}
