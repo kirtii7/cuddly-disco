@@ -26,9 +26,9 @@
 						{% for task in data %}
 			
 								{% if task.status %}
-									COMPLETED: {{task.Info}} {{task.Sno}}
+									COMPLETED: {{task.Info}} <br>
 								{% else %}
-									INCOMPLETE: {{task.Info}} {{task.Sno}}
+									INCOMPLETE: {{task.Info}} <br>
 								{% endif %}
 							
 						{% endfor %}			
@@ -45,6 +45,17 @@
 			{% endfor %}
 		</select>
 		<button type="submit" class="btn btn-primary" style="margin-top:3%;text-align:center">Toggle</button>
+	</form>
+	<form action="{% url 'tasks:Delete' %}" method="post">
+		{% csrf_token %}
+		<label for="form" class="alert alert-danger">Select task to delete:</label><br>
+		<select class="form-select" aria-label="Default select example" name="Delete">
+		<option selected>Select task to delete</option>
+			{% for task in data %}
+				<option value={{task.Sno}}>{{task.Info}}</option>
+			{% endfor %}
+		</select>
+		<button type="submit" class="btn btn-primary" style="margin-top:3%;text-align:center">Delete</button>
 	</form>
 	<a href="{% url 'tasks:Clearall' %}">Clear all</a>
 {% endblock %}

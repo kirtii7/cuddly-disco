@@ -33,4 +33,10 @@ def Clearall(request):
 		"data":Todolist.objects.all()
 		})	
 
-
+def Delete(request):
+	if request.method == "POST":
+		task_no=request.POST["Delete"]
+		Todolist.objects.filter(Sno=task_no).delete()
+	return render(request,"tasks/index.html",{
+		"data":Todolist.objects.all()
+		})	
