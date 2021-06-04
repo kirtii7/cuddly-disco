@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'Register',
     'tasks',
+    'LinkedIn',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

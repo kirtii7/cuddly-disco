@@ -1,26 +1,36 @@
 from django.shortcuts import render
-from django import forms
-from django.urls import reverse
-from django.http import HttpResponseRedirect
-tasks = ["foo", "bar", "baz"]
-class NewTaskForm(forms.Form):
-	task = forms.CharField(label="New Task")
+from .models import Todolist
 # Create your views here.
+task_no=0 
 def index(request):
-	return render(request,"tasks/index.html", {
-		"tasks": tasks
-		})
-def add(request):
+	global task_no
 	if request.method == "POST":
-		form = NewTaskForm(request.POST)
-		if form.is_valid():
-			task=form.cleaned_data["task"]
-			tasks.append(task)
-			return HttpResponseRedirect(reverse("tasks:index"))
-	else:
-		return render(request,"tasks/add.html",{
-			"form: form"
-			})
-	return render(request,"tasks/add.html",{
-	"form": NewTaskForm()
-	})
+		Newtask = request.POST["new_task"]
+		if Newtask!="":
+			try:
+				x=Todolist.objects.get(Info=Newtask)
+			except:
+				task_no+=1
+				x=Todolist(Info=Newtask, status=False, Sno=task_no)
+				x.save()
+	return render(request,"tasks/index.html",{
+		"data":Todolist.objects.all()
+		})
+def Status(request):
+	if request.method == "POST":
+		task_no=request.POST["toggle"]
+		try:
+			Todolist.objects.get(Sno=task_no , status=True)
+			Todolist.objects.filter(Sno=task_no).update(status=False)
+		except:
+			Todolist.objects.filter(Sno=task_no).update(status=True)
+	return render(request,"tasks/index.html",{
+		"data":Todolist.objects.all()
+		})	
+def Clearall(request):
+	Todolist.objects.all().delete()
+	return render(request,"tasks/index.html",{
+		"data":Todolist.objects.all()
+		})	
+
+

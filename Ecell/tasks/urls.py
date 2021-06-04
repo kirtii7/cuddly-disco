@@ -3,5 +3,7 @@ from . import views
 app_name = "tasks"
 urlpatterns = [
 	path("", views.index, name="index"),
-	path("add", views.add, name="add")
+	path("status", views.Status, name="Status"),
+	path("clear", views.Clearall, name="Clearall")
+
 ]

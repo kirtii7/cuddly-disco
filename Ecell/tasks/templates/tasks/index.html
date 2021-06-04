@@ -1,10 +1,50 @@
 {% extends "tasks/layout.html" %}
 {% block body %}
-	<ul>
-		{% for task in tasks %}
-			<li><h1>{{ task }}</h1></li>
-		{% endfor %}
-	</ul>	
-	<a href="{% url 'tasks:add' %}">Add a new task</a>	
+	<style >
+		body {background-image: url('https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2978&q=80');}
+	</style>
+		
+		<form action="{% url 'tasks:index' %}" method="post">
+		{% csrf_token %}
+			<div class="card" style="margin-left: 30%;margin-right: 30%;margin-top: 3%;">
+  	
+  				<img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1537&q=80" class="card-img-top" alt="...">
+  				<div class="card-body">
+   				<h1 class="card-title" style="text-align: center; font-weight: 900;">To-do List</h1>
+    			<p class="card-text" style="text-align: center; font-weight: 600; color: blueviolet;" >Make your day more productive by being organised</p>
+    			<label for="Input_task" class="form-label" style="text-align: center; font-weight: 600; color: crimson;" >Input a new task</label>
+    			<input type="text" name="new_task" class="form-control" id="Input_task" placeholder="Enter task" >
+  				</div>
+    			<button type="submit" class="btn btn-primary" style="padding:3%">Submit</button>
+		</form>
+			</div>
+
+	<div class="card" style="margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%">
+  		<div class="card-header">Tasks</div>
+  			<div class="card-body">
+    			<h5 class="card-title">	
+						{% for task in data %}
+			
+								{% if task.status %}
+									COMPLETED: {{task.Info}} {{task.Sno}}
+								{% else %}
+									INCOMPLETE: {{task.Info}} {{task.Sno}}
+								{% endif %}
+							
+						{% endfor %}			
+				</h5>
+  			</div>
+	</div>	
+	<form action="{% url 'tasks:Status' %}" method="post">
+		{% csrf_token %}
+		<label for="form" class="alert alert-danger">Select task to toggle:</label><br>
+		<select class="form-select" aria-label="Default select example" name="toggle">
+		<option selected>Select the task</option>
+			{% for task in data %}
+				<option value={{task.Sno}}>{{task.Info}}</option>
+			{% endfor %}
+		</select>
+		<button type="submit" class="btn btn-primary" style="margin-top:3%;text-align:center">Toggle</button>
+	</form>
+	<a href="{% url 'tasks:Clearall' %}">Clear all</a>
 {% endblock %}
-	
